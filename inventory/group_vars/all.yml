@@ -1,0 +1,60 @@
+# General
+install_ansible_modules: "true"
+disable_transparent_huge_pages: "true"
+setup_interface: "false"
+
+#SSH
+ssh_port: 2222
+
+# DNS
+#resolv_nameservers: [185.231.181.206, 185.206.92.250] # R1
+resolv_nameservers: [10.202.10.202, 10.202.10.102] # 403.online
+# resolv_nameservers: [172.24.4.5]
+# resolv_domain: ""
+# resolv_search: []
+# resolv_sortlist: []
+# resolv_options: []
+
+# Sanction shekan
+# use_shecan: "true"
+# shecan_sniproxy_ip: "50.7.87.82"
+# sanction_sites: "europe-west9-docker.pkg.dev k8s.io registry.k8s.io download.docker.com quay.io registry-1.docker.io auth.docker.io k8s.gcr.io dl.k8s.io storage.googleapis.com apt.kubernetes.io packages.cloud.google.com gcr.io registry.gitlab.com gitlab.com charts.gitlab.io github.com github.io kubernetes-charts.storage.googleapis.com production.cloudflare.docker.com k8s.io docker.elastic.co docker-auth.elastic.co docker-auth.elastic.co d2iks1dkcwqcbx.cloudfront.net packages.wazuh.com downloads.linux.hpe.com nvcr.io files.pythonhosted.org mirror.registry.io mirror.gcr.io registry-1.docker.io apt.kubernetes.io packages.cloud.google.com"
+
+# Local Registry
+# local_registry_ip: 192.168.31.212
+# local_registry_name: "reg.milad.local"
+# local_registry_port: "81"
+
+# Disk
+# disk: "/dev/sdb"
+# partition: "/dev/sdb1"
+# volume_group: "data_vg"
+# logical_volume: "data_lv"
+# filesystem_type: "xfs"
+# mount_point: "/data"
+
+# CRI
+docker_gpg_key_path: /etc/apt/keyrings/docker.gpg
+install_docker: "true"
+docker_version: 5:20.10.12~3-0~debian-bullseye
+containerd_version: 1.4.13-1
+docker_apt_repository: "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable"
+docker_apt_gpg_key: https://download.docker.com/linux/debian/gpg
+docker_apt_ignore_key_error: true
+
+# Kubernetes
+k8s_version: 1.21.10-00
+kubernetes_apt_repository: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+kubernetes_apt_gpg_key: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+
+# Docker compose options
+# docker_install_compose: true
+# docker_compose_version: "1.29.2"
+# docker_compose_path:
+
+# HPE server packages
+# hp_package_list:
+#   - hponcfg-5.6.0-0_amd64.deb
+#   # - hp-health_10.80-1874.10_amd64.deb
+#   # - ssacli-5.20-8.0_amd64.deb
+# hp_apt_repository: http://downloads.linux.hpe.com/SDR/repo/mcp/pool/non-free
