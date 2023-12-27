@@ -1,0 +1,12 @@
+---
+# handlers file for preinstall
+
+- name: Remove temporary GPG key file
+  file:
+    path: "/tmp/docker.list"
+    state: absent
+
+- name: restart sshd
+  service:
+    name: sshd
+    state: restarted
