@@ -4,4 +4,10 @@
   gather_facts: yes
   any_errors_fatal: true
 
+- hosts: k8s
+  roles:
+    - role: k8s
+  gather_facts: yes
+  any_errors_fatal: true
+
 
