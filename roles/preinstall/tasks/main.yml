@@ -3,6 +3,3 @@
 
 - name: basic setup
   include_tasks: basic.yaml
-
-# - name: basic k8s install
-#   include_tasks: basick8s.yaml
