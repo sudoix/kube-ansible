@@ -6,25 +6,26 @@ setup_interface: "false"
 #SSH
 ssh_port: 2222
 
+# Network
+
+pod_network_cidr: "192.168.0.0/16"
+
 # DNS
 #resolv_nameservers: [185.231.181.206, 185.206.92.250] # R1
 resolv_nameservers: [10.202.10.202, 10.202.10.102] # 403.online
-# resolv_nameservers: [172.24.4.5]
-# resolv_domain: ""
-# resolv_search: []
-# resolv_sortlist: []
-# resolv_options: []
 
-# Sanction shekan
-# use_shecan: "true"
-# shecan_sniproxy_ip: "50.7.87.82"
-# sanction_sites: "europe-west9-docker.pkg.dev k8s.io registry.k8s.io download.docker.com quay.io registry-1.docker.io auth.docker.io k8s.gcr.io dl.k8s.io storage.googleapis.com apt.kubernetes.io packages.cloud.google.com gcr.io registry.gitlab.com gitlab.com charts.gitlab.io github.com github.io kubernetes-charts.storage.googleapis.com production.cloudflare.docker.com k8s.io docker.elastic.co docker-auth.elastic.co docker-auth.elastic.co d2iks1dkcwqcbx.cloudfront.net packages.wazuh.com downloads.linux.hpe.com nvcr.io files.pythonhosted.org mirror.registry.io mirror.gcr.io registry-1.docker.io apt.kubernetes.io packages.cloud.google.com"
 
-# Local Registry
-# local_registry_ip: 192.168.31.212
-# local_registry_name: "reg.milad.local"
-# local_registry_port: "81"
+# Docker
 
+docker_gpg_key_url: "https://download.docker.com/linux/ubuntu/gpg"
+docker_gpg_key_path: "/etc/apt/keyrings/docker.gpg"
+docker_apt_repo: "https://download.docker.com/linux/ubuntu"
+
+# Kubernetes
+
+kubernetes_gpg_keyring_path: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
+kubernetes_gpg_key_url: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key"
+kubernetes_apt_repo: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/"
 # Disk
 # disk: "/dev/sdb"
 # partition: "/dev/sdb1"
@@ -34,7 +35,7 @@ resolv_nameservers: [10.202.10.202, 10.202.10.102] # 403.online
 # mount_point: "/data"
 
 # CRI
-docker_gpg_key_path: /etc/apt/keyrings/docker.gpg
+
 install_docker: "true"
 docker_version: 5:20.10.12~3-0~debian-bullseye
 containerd_version: 1.4.13-1
