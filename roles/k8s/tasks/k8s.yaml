@@ -70,31 +70,14 @@
     owner: root   # Set the owner, if required
     group: root   # Set the group, if required
 
-- name: Download Docker GPG key
-  get_url:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    dest: /tmp/docker.gpg
-    mode: '0644'
-
-- name: Ensure /etc/apt/keyrings directory exists
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: '0755'
-
 - name: Remove existing Docker GPG key if it exists
   file:
-    path: /etc/apt/keyrings/docker.gpg
+    path: '{{ docker_gpg_key_path }}'
     state: absent
 
-- name: Convert the downloaded GPG key to a keyring
-  shell:
-    cmd: gpg --dearmor -o /etc/apt/keyrings/docker.gpg < /tmp/docker.gpg
-  args:
-    executable: /bin/bash
-  become: true
-  notify:
-    - Remove temporary GPG key file
+- name: Download Docker GPG key
+  shell: |
+    curl -fsSL {{ docker_gpg_key_url }} | gpg --dearmor -o {{ docker_gpg_key_path }}
 
 - name: Determine the architecture
   command: dpkg --print-architecture
@@ -108,7 +91,7 @@
   lineinfile:
     path: /etc/apt/sources.list.d/docker.list
     create: yes
-    line: "deb [arch={{ architecture.stdout }} signed-by={{ docker_gpg_key_path }}] https://download.docker.com/linux/ubuntu {{ distribution_codename.stdout }} stable"
+    line: "deb [arch={{ architecture.stdout }} signed-by={{ docker_gpg_key_path }}] {{ docker_apt_repo }} {{ distribution_codename.stdout }} stable"
     state: present
 
 - name: Update apt cache
@@ -120,12 +103,7 @@
     pkg:
       - containerd.io
     state: present
-    update_cache: yes  # Optional: this will also update the cache before installing
-
-- name: Ensure containerd is installed before generating its default config
-  package:
-    name: containerd
-    state: present
+    update_cache: yes  # Optional: this will also update the cache before installingt
 
 - name: Generate default containerd configuration
   shell:
@@ -148,35 +126,18 @@
     name: containerd
     enabled: yes
 
-- name: Ensure the APT keyring directory exists
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: '0755'
-
-- name: Download Kubernetes APT key
-  get_url:
-    url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
-    dest: /tmp/kubernetes-release.key
-    mode: '0644'
-
 - name: Delete the existing Kubernetes APT keyring file if it exists
   file:
-    path: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    path: '{{ kubernetes_gpg_keyring_path }}'
     state: absent
 
-- name: Import Kubernetes APT key
-  shell:
-    cmd: "gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg < /tmp/kubernetes-release.key"
-
-- name: Remove the temporary Kubernetes APT key file
-  ansible.builtin.file:
-    path: /tmp/kubernetes-release.key
-    state: absent
+- name: Download Kubernetes GPG key
+  shell: |
+    curl -fsSL '{{ kubernetes_gpg_key_url }}' | gpg --dearmor -o '{{ kubernetes_gpg_keyring_path }}'
 
 - name: Add Kubernetes repo
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /"
+    repo: "deb [signed-by={{ kubernetes_gpg_keyring_path }}] {{ kubernetes_apt_repo }} /"
     state: present
     filename: kubernetes.list
 
