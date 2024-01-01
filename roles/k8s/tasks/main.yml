@@ -1,5 +1,8 @@
 ---
 # tasks file for k8s
 
-- name: Install kubernetes packages abd  presetup
+- name: Install kubernetes packages
   include_tasks: k8s.yaml
+
+- name: Initialize kubernetes cluster
+  include_tasks: initk8s.yaml
