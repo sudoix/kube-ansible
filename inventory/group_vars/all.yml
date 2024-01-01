@@ -11,9 +11,12 @@ ssh_port: 2222
 pod_network_cidr: "192.168.0.0/16"
 
 # DNS
-#resolv_nameservers: [185.231.181.206, 185.206.92.250] # R1
+
 resolv_nameservers: [10.202.10.202, 10.202.10.102] # 403.online
 
+# Sanction shekan
+
+use_beshkaf: "true" # change it to "false" if you are outside of iran
 
 # Docker
 
