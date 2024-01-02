@@ -6,8 +6,10 @@
   command: hostnamectl set-hostname {{ inventory_hostname }}
 
 - name: Remove symlink resolve.conf | Comment this task if you live in outside of Iran :)
-  command:
-    cmd: rm /etc/resolv.conf # you can use unlink command
+  file:
+    path: "/etc/resolv.conf"
+    state: absent
+  ignore_errors: true
 
 - name: Configure resolv.conf | Comment this task if you live in outside of Iran :)
   template:
