@@ -6,13 +6,15 @@ setup_interface: "false"
 #SSH
 ssh_port: 2222
 
-# Network
+# Network Calico
 
+calico_operator_url: "https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml"
+calico_crd_url: "https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/custom-resources.yaml"
 pod_network_cidr: "192.168.0.0/16"
 
 # DNS
 
-resolv_nameservers: [10.202.10.202, 10.202.10.102] # 403.online
+resolv_nameservers: [178.22.122.100, 185.51.200.2] # 403.online
 
 # Sanction shekan
 
