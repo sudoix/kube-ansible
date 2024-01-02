@@ -1,0 +1,45 @@
+- name: Initialize Kubernetes Cluster on Master1
+  shell: |
+    kubeadm init --control-plane-endpoint {{ private_ip }} --apiserver-advertise-address={{ private_ip }} --pod-network-cidr={{ pod_network_cidr }} >> /home/kubeinit.log  when: inventory_hostname == groups['k8s_masters'][0]
+  notify: Restart kubelet
+
+- block:
+    - name: Create kubectl directory
+      file:
+        path: /root/.kube
+        state: directory
+
+    - name: Configure kubectl
+      copy:
+        src: /etc/kubernetes/admin.conf
+        dest: /root/.kube/config
+        remote_src: yes
+
+    - name: Fetch kubeconfig
+      fetch:
+        src: /etc/kubernetes/admin.conf
+        dest: kubeconfig/
+        flat: yes
+  when: inventory_hostname == groups['k8s_masters'][0]
+  delegate_to: "{{ groups['k8s_masters'][0] }}"
+
+
+
+
+
+# - name: Reboot the servers
+#   command: reboot
+#   async: 1
+#   poll: 0
+#   ignore_errors: yes
+
+# - name: Sleep for 120 seconds and continue with play (to server up)
+#   wait_for:
+#     timeout: 120
+#   delegate_to: localhost
+
+# Add your additional tasks here
+# - name: Example Task After Reboot
+#   debug:
+#     msg: "Server {{ inventory_hostname }} is back online and ready for tasks."
+
