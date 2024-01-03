@@ -5,3 +5,8 @@
   file:
     path: "/tmp/docker.list"
     state: absent
+
+- name: Restart kubelet
+  ansible.builtin.service:
+    name: kubelet
+    state: restarted
