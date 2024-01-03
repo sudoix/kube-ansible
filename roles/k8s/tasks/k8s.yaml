@@ -150,9 +150,9 @@
     name: "{{ item }}"
     state: present
   loop:
-    - kubeadm
-    - kubelet
-    - kubectl
+    - kubeadm={{ k8s_version }}-1.1
+    - kubelet={{ k8s_version }}-1.1
+    - kubectl={{ k8s_version }}-1.1
 
 - name: Hold Kubernetes packages
   dpkg_selections:
@@ -162,6 +162,16 @@
     - kubeadm
     - kubelet
     - kubectl
+    - containerd.io
+
+- name: Configure node ip
+  lineinfile:
+    path: /etc/default/kubelet
+    line: KUBELET_EXTRA_ARGS=--node-ip={{ private_ip }}
+    # line: KUBELET_EXTRA_ARGS=--node-ip={% if network is not defined %}{{ private_ip }}{% elif network == "public" %}{{ ansible_host }}{% endif %}
+    create: yes
+    state: present
+  notify: Restart kubelet
 
 - name: Add hosts to /etc/hosts
   ansible.builtin.lineinfile:
@@ -171,6 +181,12 @@
     create: no
   loop: "{{ groups['all'] }}"
   when: hostvars[item].private_ip is defined
+
+- name: Add {{ apiserver_url }} to point to the masters temporary"
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ hostvars[groups['k8s_masters'][0]].private_ip }} {{ apiserver_url }}"
+    state: present
 
 - name: Pull Kubernetes images | If you got error check your dns and sanction
   command:
