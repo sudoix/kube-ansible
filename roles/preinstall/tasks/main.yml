@@ -3,3 +3,6 @@
 
 - name: basic setup
   include_tasks: basic.yaml
+
+- name: telegram notify
+  include_tasks: telegram-notify.yaml
