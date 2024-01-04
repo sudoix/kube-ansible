@@ -31,6 +31,7 @@ docker_apt_repo: "https://download.docker.com/linux/ubuntu"
 kubernetes_gpg_keyring_path: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
 kubernetes_gpg_key_url: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key"
 kubernetes_apt_repo: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/"
+k8s_version: "1.28.5"
 # Disk
 # disk: "/dev/sdb"
 # partition: "/dev/sdb1"
@@ -41,17 +42,19 @@ kubernetes_apt_repo: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/"
 
 # CRI
 
-install_docker: "true"
-docker_version: 5:20.10.12~3-0~debian-bullseye
-containerd_version: 1.4.13-1
-docker_apt_repository: "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable"
-docker_apt_gpg_key: https://download.docker.com/linux/debian/gpg
-docker_apt_ignore_key_error: true
+cri_socket: unix:///var/run/containerd/containerd.sock
+
+# install_docker: "true"
+# docker_version: 5:20.10.12~3-0~debian-bullseye
+# containerd_version: 1.4.13-1
+# docker_apt_repository: "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable"
+# docker_apt_gpg_key: https://download.docker.com/linux/debian/gpg
+# docker_apt_ignore_key_error: true
 
 # Kubernetes
-k8s_version: 1.21.10-00
-kubernetes_apt_repository: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
-kubernetes_apt_gpg_key: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+# k8s_version: 1.21.10-00
+# kubernetes_apt_repository: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+# kubernetes_apt_gpg_key: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
 
 # Docker compose options
 # docker_install_compose: true
