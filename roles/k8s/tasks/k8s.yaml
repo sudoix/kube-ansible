@@ -103,7 +103,7 @@
     pkg:
       - containerd.io
     state: present
-    update_cache: yes  # Optional: this will also update the cache before installingt
+    # update_cache: yes  # Optional: this will also update the cache before installingt
 
 - name: Generate default containerd configuration
   shell:
@@ -176,7 +176,7 @@
 - name: Add hosts to /etc/hosts
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "{{ hostvars[item].private_ip }} {{ item }} {{ item }}.sudoix.com"
+    line: "{{ hostvars[item].private_ip }} {{ item }} {{ item }}.{{ domain }}"
     state: present
     create: no
   loop: "{{ groups['all'] }}"
