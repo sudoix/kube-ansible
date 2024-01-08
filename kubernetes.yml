@@ -12,6 +12,13 @@
   any_errors_fatal: true
   tags: [k8s]
 
+- hosts: k8s
+  roles:
+    - role: k8s
+  gather_facts: yes
+  any_errors_fatal: true
+  tags: [init_k8s]
+
 
 - hosts: k8s_masters
   roles:
@@ -19,4 +26,11 @@
   gather_facts: yes
   any_errors_fatal: true
   tags: [join_master]
+
+- hosts: k8s_workers
+  roles:
+    - role: join_worker
+  gather_facts: yes
+  any_errors_fatal: true
+  tags: [join_worker]
 
