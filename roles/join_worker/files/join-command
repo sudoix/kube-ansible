@@ -1,0 +1,1 @@
+kubeadm join espenu.sudoix.com:6443 --token qt9e7q.epmjfx2nwdkh2ojv --discovery-token-ca-cert-hash sha256:8b5e16f9c548de3b34bb0f007e927f4c9eb315dd1bf8e32846a6f6dc1c67d391  $@
