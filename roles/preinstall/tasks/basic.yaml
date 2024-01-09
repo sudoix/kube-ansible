@@ -16,7 +16,7 @@
     src: "resolv.conf.j2"
     dest: "/etc/resolv.conf"
     mode: "0644"
-  when: use_beshkaf == "true"
+  when: use_iran == "true"
 
 - name: Add hostname
   lineinfile:
