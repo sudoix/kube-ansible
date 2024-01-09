@@ -2,6 +2,8 @@
 
 #### How to use
 
+Change your `inventory` file to `inventory/k8s-servers.ini` and put your hosts in it
+
 For Install kubernetes you need some preinstall task, for preinstall follow these steps
 
 ```bash
