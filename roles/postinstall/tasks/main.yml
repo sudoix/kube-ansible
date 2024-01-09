@@ -1,0 +1,11 @@
+---
+# tasks file for postinstall
+
+- name: Add hosts to /etc/hosts
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: "{{ hostvars[item].private_ip }} {{ item }} {{ item }}.{{ domain }}"
+    state: present
+    create: no
+  loop: "{{ groups['all'] }}"
+  when: hostvars[item].private_ip is defined

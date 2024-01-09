@@ -1,0 +1,8 @@
+---
+# tasks file for init_k8s
+
+- name: Initialize kubernetes cluster
+  include_tasks: initk8s.yaml
+
+- name: Initialize Calico CNI
+  include_tasks: cni.yaml
