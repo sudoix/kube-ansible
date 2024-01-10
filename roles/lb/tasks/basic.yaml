@@ -1,0 +1,14 @@
+- name: Install loadbalancer packages
+  apt:
+    update_cache: true
+    name:
+      - haproxy
+      - keepalived
+    state: latest
+    update_cache: true
+
+- name: Copy check apt script
+  template:
+    src:  check_apiserveer.sh.j2
+    dest: /etc/keepalived/check_apiserver.sh
+    mode: 0755
