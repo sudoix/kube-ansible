@@ -7,8 +7,14 @@
     state: latest
     update_cache: true
 
-- name: Copy check apt script
+- name: Copy check api script
   template:
-    src:  check_apiserveer.sh.j2
+    src: check_apiserveer.sh.j2
     dest: /etc/keepalived/check_apiserver.sh
+    mode: 0755
+
+- name: Copy keepalived config
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
     mode: 0755
