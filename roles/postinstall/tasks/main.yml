@@ -9,3 +9,24 @@
     create: no
   loop: "{{ groups['all'] }}"
   when: hostvars[item].private_ip is defined
+
+- name: Rremove {{ apiserver_url }} to point to the masters temporary"
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ hostvars[groups['k8s_masters'][0]].private_ip }} {{ apiserver_url }}"
+    state: absent
+
+- name: remove {{ apiserver_url }} to point to the masters"
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ private_ip }} {{ apiserver_url }}"
+    state: absent
+
+- name: Add {{ apiserver_url }} with {{ virtual_ip }} to the all servers"
+  lineinfile:
+    dest: /etc/hosts
+    line: "{{ virtual_ip }} {{ apiserver_url }}"
+    state: present
+  # when:
+  #   - inventory_hostname in groups['k8s_masters']
+
