@@ -21,7 +21,7 @@
 - name: Start and enable the keepalived service
   ansible.builtin.service:
     name: keepalived
-    state: started
+    state: restarted
     enabled: yes
 
 - name: Copy haproxy config
@@ -32,5 +32,5 @@
 - name: Start and enable the haproxy service
   ansible.builtin.service:
     name: haproxy
-    state: started
+    state: restarted
     enabled: yes
