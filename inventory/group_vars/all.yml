@@ -37,6 +37,10 @@ k8s_version: "1.28.5"
 
 cri_socket: unix:///var/run/containerd/containerd.sock
 
+# lb
+
+virtual_ip: "172.16.100.100"
+
 
 # Disk
 # disk: "/dev/sdb"

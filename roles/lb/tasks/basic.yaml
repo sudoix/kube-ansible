@@ -1,0 +1,36 @@
+# - name: Install loadbalancer packages
+#   apt:
+#     update_cache: true
+#     name:
+#       - haproxy
+#       - keepalived
+#     state: latest
+#     update_cache: true
+
+- name: Copy check api script
+  template:
+    src: check_apiserveer.sh.j2
+    dest: /etc/keepalived/check_apiserver.sh
+    mode: 0755
+
+- name: Copy keepalived config
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+
+- name: Start and enable the keepalived service
+  ansible.builtin.service:
+    name: keepalived
+    state: restarted
+    enabled: yes
+
+- name: Copy haproxy config
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: Start and enable the haproxy service
+  ansible.builtin.service:
+    name: haproxy
+    state: restarted
+    enabled: yes

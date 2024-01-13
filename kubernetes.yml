@@ -34,6 +34,14 @@
   any_errors_fatal: true
   tags: [join_worker]
 
+- hosts: lb
+  roles:
+    - role: preinstall
+    - role: lb
+  gather_facts: yes
+  any_errors_fatal: true
+  tags: [lb]
+
 - hosts: all
   roles:
     - role: postinstall

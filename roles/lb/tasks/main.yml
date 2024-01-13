@@ -1,0 +1,5 @@
+---
+# tasks file for lb
+
+- name: basic setup
+  include_tasks: basic.yaml
