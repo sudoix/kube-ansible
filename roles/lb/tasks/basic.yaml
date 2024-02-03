@@ -1,11 +1,11 @@
-# - name: Install loadbalancer packages
-#   apt:
-#     update_cache: true
-#     name:
-#       - haproxy
-#       - keepalived
-#     state: latest
-#     update_cache: true
+- name: Install loadbalancer packages
+  apt:
+    update_cache: true
+    name:
+      - haproxy
+      - keepalived
+    state: latest
+    update_cache: true
 
 - name: Copy check api script
   template:
