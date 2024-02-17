@@ -4,6 +4,8 @@
 
 This Ansible playbook is designed to automate the deployment of Kubernetes in a production environment, using HAProxy as the front-facing load balancer to distribute traffic among Kubernetes nodes for high availability and scalability.
 
+![kubernetes](./assets/Setup_HA_Kubernetes_Cluster_with_keepalived.png)
+
 ## Prerequisites
 
 Before running this playbook, ensure you have the following prerequisites met:
