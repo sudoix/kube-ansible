@@ -58,13 +58,14 @@ For join worker(s) node to cluster, follow these steps:
 ```bash
 ansible-playbook -i inventory/k8s-servers.ini kubernetes.yml  --become --become-method=sudo -t join_worker
 ```
+
 #### If you like to use haproxy for loadbalancing in your kubernetes you can use these bellow step.
 
-```basb
+```bash
 ansible-playbook -i inventory/k8s-servers.ini kubernetes.yml --become --become-method=sudo -t lb
 ```
 
-and for finilize use
+and for finilize use (If you use lb tag you MUST run the postinstall task)
 
 ```bash
 ansible-playbook -i inventory/k8s-servers.ini kubernetes.yml --become --become-method=sudo -t postinstall
