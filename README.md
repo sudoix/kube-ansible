@@ -1,5 +1,7 @@
 # kube-ansible
 
+# Tested on Ubuntu 24.04 and kubernetes 1.31.2 ✅
+
 # Kubernetes Deployment with HAProxy Load Balancer using Ansible
 
 This Ansible playbook is designed to automate the deployment of Kubernetes in a production environment, using HAProxy as the front-facing load balancer to distribute traffic among Kubernetes nodes for high availability and scalability.
