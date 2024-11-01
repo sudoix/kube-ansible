@@ -18,7 +18,7 @@
     src: keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
 
-- name: Start and enable the keepalived service
+- name: Retart and enable the keepalived service
   ansible.builtin.service:
     name: keepalived
     state: restarted
