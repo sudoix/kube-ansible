@@ -9,7 +9,7 @@ vrrp_script check_apiserver {
 
 vrrp_instance VI_1 {
     state BACKUP
-    interface eth1 # set your interface
+    interface {{ interface_name }} # set your interface
     virtual_router_id 1
     priority 100
     advert_int 5

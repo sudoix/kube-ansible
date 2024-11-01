@@ -8,9 +8,14 @@
     regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
     replace: '# \1'
 
+- name: Check if ufw is installed
+  package_facts:
+    manager: "auto"
+
 - name: Disable ufw # just in Ubuntu
   ufw:
     state: disabled
+  when: "'ufw' in ansible_facts.packages"
 
 - name: Ensure kernel modules for containerd are enabled
   lineinfile:

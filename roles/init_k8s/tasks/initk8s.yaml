@@ -41,7 +41,7 @@
   when: inventory_hostname == groups['k8s_masters'][0]
   delegate_to: "{{ groups['k8s_masters'][0] }}"
 
-- name: Sleep for 300 seconds and reboot the Master1 server
+- name: Sleep for 300 seconds and reboot the Master1 server | because we live in Iran :D
   wait_for:
     timeout: 300
   delegate_to: localhost
@@ -50,13 +50,14 @@
   command: reboot
   async: 1
   poll: 0
-  ignore_errors: yes
+  # ignore_errors: yes
   delegate_to: "{{ groups['k8s_masters'][0] }}"
 
-- name: Sleep for 300 seconds to Master1 up and running
+- name: Sleep for 300 seconds to Master1 up and running | because we live in Iran :D
   wait_for:
     timeout: 300
   delegate_to: localhost
+  # when: use_iran == "true"
 
 - name: Example Task After Reboot
   debug:

@@ -10,6 +10,7 @@
     path: "/etc/resolv.conf"
     state: absent
   ignore_errors: true
+  when: use_iran == "true"
 
 - name: Configure resolv.conf | Comment this task if you live in outside of Iran :)
   template:
@@ -82,6 +83,7 @@
       - open-iscsi
       - nfs-common
       - tzdata
+      - tree
       # - bpytop
     state: latest
     update_cache: true
