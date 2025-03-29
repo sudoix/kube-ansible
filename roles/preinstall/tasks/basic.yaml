@@ -86,7 +86,6 @@
       - tree
       # - bpytop
     state: latest
-    update_cache: true
 
 - name: Fix broken packages
   apt:

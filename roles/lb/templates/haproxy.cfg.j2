@@ -26,3 +26,4 @@ backend kubernetes-backend
 {% for host in groups['k8s_masters'] %}
     server {{ host }} {{ hostvars[host]['private_ip'] }}:6443 check fall 3 rise 2
 {% endfor %}
+

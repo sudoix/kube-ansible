@@ -15,7 +15,7 @@ pod_network_cidr: "192.168.0.0/16"
 resolv_nameservers: [8.8.8.8, 4.2.2.4] # 403.online
 
 # Sanction shekan
-use_iran: "true" # change it to "false" if you are outside of iran
+use_iran: "false" # change it to "false" if you are outside of iran
 
 # Docker
 docker_gpg_key_url: "https://download.docker.com/linux/ubuntu/gpg"
@@ -24,9 +24,9 @@ docker_apt_repo: "https://download.docker.com/linux/ubuntu"
 
 # Kubernetes
 kubernetes_gpg_keyring_path: "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
-kubernetes_gpg_key_url: "https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key"
-kubernetes_apt_repo: "https://pkgs.k8s.io/core:/stable:/v1.31/deb/"
-k8s_version: "1.31.2" # see here https://kubernetes.io/releases/patch-releases/ and https://github.com/kubernetes/kubernetes/releases
+kubernetes_gpg_key_url: "https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key"
+kubernetes_apt_repo: "https://pkgs.k8s.io/core:/stable:/v1.32/deb/"
+k8s_version: "1.32.2" # see here https://kubernetes.io/releases/patch-releases/ and https://github.com/kubernetes/kubernetes/releases
 
 # CRI
 cri_socket: unix:///var/run/containerd/containerd.sock
