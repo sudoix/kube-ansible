@@ -1,6 +1,8 @@
 # kube-ansible
 
-# Tested on Ubuntu 24.04 and kubernetes 1.31.2 ✅
+# Tested on Ubuntu 24.04 and kubernetes 1.32.2 ✅
+
+# Youtube Tutorial: https://www.youtube.com/watch?v=7C5WQ5GD7ss
 
 # Kubernetes Deployment with HAProxy Load Balancer using Ansible
 
